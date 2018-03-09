@@ -2,7 +2,7 @@ import skimage.io, skimage.transform, skimage.morphology
 import os
 import sys
 import random
-import tqdm
+from tqdm import tqdm
 import numpy as np
 from .elastic_transform import elastic_transform
 def data_aug(TRAIN_PATH, TEST_PATH, IMG_WIDTH, IMG_HEIGHT, IMG_CHANNELS):
