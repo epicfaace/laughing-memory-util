@@ -13,7 +13,7 @@ def data_aug_download(X_train, Y_train, DATA_AUG_NAME="data-aug"):
     files.download(DATA_AUG_NAME + '-X_train.npy')
     files.download(DATA_AUG_NAME + '-Y_train.npy')
 
-def data_aug(TRAIN_PATH, TEST_PATH, IMG_WIDTH, IMG_HEIGHT, IMG_CHANNELS, run_times=None):
+def data_aug(TRAIN_PATH, TEST_PATH, IMG_WIDTH, IMG_HEIGHT, IMG_CHANNELS):
     #os.walk example
     i = 0
     for (path, dirs, files) in os.walk(TRAIN_PATH):
@@ -85,10 +85,7 @@ def data_aug(TRAIN_PATH, TEST_PATH, IMG_WIDTH, IMG_HEIGHT, IMG_CHANNELS, run_tim
             randW = random.randint(20,w - 20)
             X_train_aug[num_aug*n + index] = skimage.transform.resize(img[:randH, :randW], (h, w), mode='constant', preserve_range=True)
             Y_train_aug[num_aug*n + index] = skimage.transform.resize(mask[:randH, :randW], (h, w), mode='constant', preserve_range=True)
-        
-        # Short-circuit.
-        if run_times and n > run_times:
-            break
+
         
         """skimage.io.imshow(X_train[n])
         plt.show()
