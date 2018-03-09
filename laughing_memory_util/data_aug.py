@@ -1,8 +1,11 @@
-import skimage
+import skimage.io, skimage.transform, skimage.morphology
+import os
+import sys
+import random
 import tqdm
 import numpy as np
 from .elastic_transform import elastic_transform
-def data_aug(TRAIN_PATH, TEST_PATH):
+def data_aug(TRAIN_PATH, TEST_PATH, IMG_WIDTH, IMG_HEIGHT, IMG_CHANNELS):
     #os.walk example
     i = 0
     for (path, dirs, files) in os.walk(TRAIN_PATH):
@@ -97,7 +100,4 @@ def data_aug(TRAIN_PATH, TEST_PATH):
         
 
     print('\n Training images succesfully downsampled!')
-    return {
-        "X_train": np.concatenate(X_train_aug, X_train),
-        "Y_train": np.concatenate(Y_train_aug, Y_train)
-    }
+    return np.concatenate(X_train_aug, X_train), np.concatenate(Y_train_aug, Y_train)
