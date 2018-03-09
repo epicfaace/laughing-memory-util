@@ -75,6 +75,7 @@ def data_aug(TRAIN_PATH, TEST_PATH, IMG_WIDTH, IMG_HEIGHT, IMG_CHANNELS):
         for index in range(3, 9):
             randH = random.randint(20,h - 20)
             randW = random.randint(20,w - 20)
+            print(randW, randH, w, h)
             X_train_aug[num_aug*n + index] = skimage.transform.resize(img[:randH, :randW], (h, w), mode='constant', preserve_range=True)
             Y_train_aug[num_aug*n + index] = skimage.transform.resize(mask[:randH, :randW], (h, w), mode='constant', preserve_range=True)
             
