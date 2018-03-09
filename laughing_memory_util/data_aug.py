@@ -72,7 +72,8 @@ def data_aug(TRAIN_PATH, TEST_PATH, IMG_WIDTH, IMG_HEIGHT, IMG_CHANNELS):
         X_train_aug[num_aug*n + 2] =  elastic_transform(img)
         Y_train_aug[num_aug*n + 2] =  elastic_transform(mask)
         
-        for index in range(3, 9):
+        for index in range(3, 4):
+            print(w, h)
             randH = random.randint(20,h - 20)
             randW = random.randint(20,w - 20)
             print(randW, randH, w, h)
