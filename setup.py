@@ -7,5 +7,5 @@ setup(name='Laughing memory util',
       author='Laughing Memory',
       author_email='',
       license='MIT',
-      packages=['funniest'],
+      packages=['laughing_memory_util'],
       zip_safe=False)
