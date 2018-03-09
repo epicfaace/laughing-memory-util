@@ -105,7 +105,6 @@ def data_aug(TRAIN_PATH, TEST_PATH, IMG_WIDTH, IMG_HEIGHT, IMG_CHANNELS):
         skimage.io.imshow(np.squeeze(Y_train_aug[3*n+3]))
         plt.show()
         break"""
-        break
 
     print('\n Training images succesfully downsampled!')
     return np.concatenate((X_train_aug, X_train), axis=0), np.concatenate((Y_train_aug, Y_train), axis=0)
