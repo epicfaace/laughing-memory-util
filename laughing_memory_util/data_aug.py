@@ -5,7 +5,15 @@ import random
 from tqdm import tqdm
 import numpy as np
 from .elastic_transform import elastic_transform
-def data_aug(TRAIN_PATH, TEST_PATH, IMG_WIDTH, IMG_HEIGHT, IMG_CHANNELS):
+from google.colab import files
+
+def data_aug_download(X_train, Y_train, DATA_AUG_NAME="data-aug"):
+    np.save(DATA_AUG_NAME + '-X_train.npy', X_train)
+    np.save(DATA_AUG_NAME + '-Y_train.npy', Y_train)
+    files.download(DATA_AUG_NAME + '-X_train.npy')
+    files.download(DATA_AUG_NAME + '-Y_train.npy')
+
+def data_aug(TRAIN_PATH, TEST_PATH, IMG_WIDTH, IMG_HEIGHT, IMG_CHANNELS, run_times=None):
     #os.walk example
     i = 0
     for (path, dirs, files) in os.walk(TRAIN_PATH):
@@ -72,14 +80,15 @@ def data_aug(TRAIN_PATH, TEST_PATH, IMG_WIDTH, IMG_HEIGHT, IMG_CHANNELS):
         X_train_aug[num_aug*n + 2] =  elastic_transform(img)
         Y_train_aug[num_aug*n + 2] =  elastic_transform(mask)
         
-        for index in range(3, 4):
-            print(w, h)
+        for index in range(3, 10):
             randH = random.randint(20,h - 20)
             randW = random.randint(20,w - 20)
-            print(randW, randH, w, h)
             X_train_aug[num_aug*n + index] = skimage.transform.resize(img[:randH, :randW], (h, w), mode='constant', preserve_range=True)
             Y_train_aug[num_aug*n + index] = skimage.transform.resize(mask[:randH, :randW], (h, w), mode='constant', preserve_range=True)
-            
+        
+        # Short-circuit.
+        if run_times and n > run_times:
+            break
         
         """skimage.io.imshow(X_train[n])
         plt.show()
@@ -99,7 +108,7 @@ def data_aug(TRAIN_PATH, TEST_PATH, IMG_WIDTH, IMG_HEIGHT, IMG_CHANNELS):
         skimage.io.imshow(np.squeeze(Y_train_aug[3*n+3]))
         plt.show()
         break"""
-        
+        break
 
     print('\n Training images succesfully downsampled!')
-    return np.concatenate(X_train_aug, X_train), np.concatenate(Y_train_aug, Y_train)
+    return np.concatenate((X_train_aug, X_train)), axis=0), np.concatenate((Y_train_aug, Y_train), axis=0)
