@@ -1,3 +1,4 @@
+import numpy as np
 import cv2
 from scipy.ndimage.interpolation import map_coordinates
 from scipy.ndimage.filters import gaussian_filter
