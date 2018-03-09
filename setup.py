@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(name='laughing_memory_util',
-      version='0.1',
+      version='0.2',
       description='The funniest joke in the world',
       url='https://github.com/epicfaace/laughing-memory-util',
       author='Laughing Memory',
