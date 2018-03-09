@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(name='laughing_memory_util',
       version='0.1',
@@ -7,5 +7,5 @@ setup(name='laughing_memory_util',
       author='Laughing Memory',
       author_email='',
       license='MIT',
-      packages=['laughing_memory_util'],
+      packages=find_packages(),
       zip_safe=False)
