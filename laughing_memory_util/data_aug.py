@@ -73,11 +73,11 @@ def data_aug(TRAIN_PATH, TEST_PATH, IMG_WIDTH, IMG_HEIGHT, IMG_CHANNELS):
         Y_train_aug[num_aug*n + 2] =  elastic_transform(mask)
         
         for index in range(3, 9):
-        randH = random.randint(0,h)
-        randW = random.randint(0,w)
-        X_train_aug[num_aug*n + index] = skimage.transform.resize(img[:randH, :randW], (h, w), mode='constant', preserve_range=True)
-        Y_train_aug[num_aug*n + index] = skimage.transform.resize(mask[:randH, :randW], (h, w), mode='constant', preserve_range=True)
-        
+            randH = random.randint(0,h)
+            randW = random.randint(0,w)
+            X_train_aug[num_aug*n + index] = skimage.transform.resize(img[:randH, :randW], (h, w), mode='constant', preserve_range=True)
+            Y_train_aug[num_aug*n + index] = skimage.transform.resize(mask[:randH, :randW], (h, w), mode='constant', preserve_range=True)
+            
         
         """skimage.io.imshow(X_train[n])
         plt.show()
