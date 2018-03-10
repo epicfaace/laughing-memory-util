@@ -73,12 +73,12 @@ def data_aug(TRAIN_PATH, TEST_PATH, IMG_WIDTH, IMG_HEIGHT, IMG_CHANNELS):
         
         #v_min, v_max = np.percentile(img, (0.2, 99.8))
         #better_img = exposure.rescale_intensity(img, in_range=(v_min, v_max))
-        X_train_aug[num_aug*n + 0] = img[:, ::-1] # horiz flip
+        X_train_aug[num_aug*n + 0] = img[:, ::-1] # horizontal flip
         Y_train_aug[num_aug*n + 0] = np.fliplr(mask)
-        X_train_aug[num_aug*n + 1] = img[::-1, :] # horiz flip
+        X_train_aug[num_aug*n + 1] = img[::-1, :] # vertical flip
         Y_train_aug[num_aug*n + 1] = np.flipud(mask)
-        X_train_aug[num_aug*n + 2] =  elastic_transform(img)
-        Y_train_aug[num_aug*n + 2] =  elastic_transform(mask)
+        X_train_aug[num_aug*n + 2] = elastic_transform(img)
+        Y_train_aug[num_aug*n + 2] = elastic_transform(mask)
         
         for index in range(3, 10):
             randH = random.randint(20,h - 20)
@@ -107,4 +107,4 @@ def data_aug(TRAIN_PATH, TEST_PATH, IMG_WIDTH, IMG_HEIGHT, IMG_CHANNELS):
         break"""
 
     print('\n Training images succesfully downsampled!')
-    return np.concatenate((X_train_aug, X_train), axis=0), np.concatenate((Y_train_aug, Y_train), axis=0)
+    return np.concatenate((X_train_aug, X_train), axis=0), np.concatenate((Y_train_aug, Y_train), axis=0), train_ids

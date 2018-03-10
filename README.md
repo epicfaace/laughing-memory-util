@@ -12,7 +12,7 @@ IMG_HEIGHT = 256
 IMG_CHANNELS = 3
 TRAIN_PATH = 'stage1_train/'
 TEST_PATH = 'stage1_test/'
-X_train, Y_train = laughing_memory_util.data_aug(TRAIN_PATH, TEST_PATH, IMG_WIDTH, IMG_HEIGHT, IMG_CHANNELS)
+X_train, Y_train, train_ids = laughing_memory_util.data_aug(TRAIN_PATH, TEST_PATH, IMG_WIDTH, IMG_HEIGHT, IMG_CHANNELS)
 
-data_aug_download(X_train, Y_train, "special aug")
+# data_aug_download(X_train, Y_train, "special aug")
 ```
